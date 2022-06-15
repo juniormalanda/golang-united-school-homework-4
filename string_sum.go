@@ -26,6 +26,10 @@ var (
 // Use the errors defined above as described, again wrapping into fmt.Errorf
 
 func StringSum(input string) (output string, err error) {
+	if input == "" {
+		return "", fmt.Errorf("Error: %s", errorEmptyInput)
+	}
+
 	runes := []rune(input)
 	var cleanExpression string
 
