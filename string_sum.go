@@ -2,6 +2,9 @@ package string_sum
 
 import (
 	"errors"
+	"fmt"
+	"strconv"
+	"strings"
 )
 
 //use these errors as appropriate, wrapping them with fmt.Errorf function
@@ -23,5 +26,72 @@ var (
 // Use the errors defined above as described, again wrapping into fmt.Errorf
 
 func StringSum(input string) (output string, err error) {
-	return "", nil
+	runes := []rune(input)
+	var cleanExpression string
+
+	for _, k := range runes {
+		switch k {
+		case ' ':
+			continue
+		case '+':
+			fallthrough
+		case '-':
+			fallthrough
+		case '1':
+			fallthrough
+		case '2':
+			fallthrough
+		case '3':
+			fallthrough
+		case '4':
+			fallthrough
+		case '5':
+			fallthrough
+		case '6':
+			fallthrough
+		case '7':
+			fallthrough
+		case '8':
+			fallthrough
+		case '9':
+			fallthrough
+		case '0':
+			cleanExpression += string(k)
+		default:
+			return "", fmt.Errorf("Invalid character: %s. Expression must contain only whitespace character, plus and minus operators and digits", string(k))
+		}
+	}
+
+	if cleanExpression == "" {
+		return "", errorEmptyInput
+	}
+
+	operandsTmp := strings.Split(cleanExpression, "+")
+
+	operands := make([]string, 0)
+
+	for _, k := range operandsTmp {
+		if k == "" {
+			continue
+		}
+
+		operands = append(operands, k)
+	}
+
+	if len(operands) != 2 {
+		return "", errorNotTwoOperands
+	}
+
+	var sum int
+
+	for _, k := range operands {
+		operand, err := strconv.Atoi(k)
+		if err != nil {
+			return "", err
+		}
+
+		sum += operand
+	}
+
+	return strconv.Itoa(sum), nil
 }
