@@ -63,7 +63,7 @@ func StringSum(input string) (output string, err error) {
 	}
 
 	if cleanExpression == "" {
-		return "", errorEmptyInput
+		return "", fmt.Errorf("Error: %s", errorEmptyInput)
 	}
 
 	operandsTmp := strings.Split(cleanExpression, "+")
@@ -79,7 +79,7 @@ func StringSum(input string) (output string, err error) {
 	}
 
 	if len(operands) != 2 {
-		return "", errorNotTwoOperands
+		return "", fmt.Errorf("Error: %w", errorNotTwoOperands)
 	}
 
 	var sum int
