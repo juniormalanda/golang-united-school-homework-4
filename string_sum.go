@@ -33,9 +33,9 @@ func StringSum(input string) (output string, err error) {
 		switch k {
 		case ' ':
 			continue
-		case '+':
-			fallthrough
 		case '-':
+			cleanExpression += "+-"
+		case '+':
 			fallthrough
 		case '1':
 			fallthrough
