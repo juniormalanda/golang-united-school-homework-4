@@ -27,7 +27,7 @@ var (
 
 func StringSum(input string) (output string, err error) {
 	if input == "" {
-		return "", fmt.Errorf("Error: %s", errorEmptyInput)
+		return "", fmt.Errorf("%w", errorEmptyInput)
 	}
 
 	runes := []rune(input)
