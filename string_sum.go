@@ -58,7 +58,7 @@ func StringSum(input string) (output string, err error) {
 		case '0':
 			cleanExpression += string(k)
 		default:
-			return "", fmt.Errorf("Invalid character: %s. Expression must contain only whitespace character, plus and minus operators and digits", string(k))
+			return "", &strconv.NumError{Func: "StringSum", Num: string(k), Err: fmt.Errorf("Invalid character: %s. Expression must contain only whitespace character, plus and minus operators and digits", string(k))}
 		}
 	}
 
