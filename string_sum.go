@@ -67,7 +67,7 @@ func StringSum(input string) (output string, err error) {
 	}
 
 	if cleanExpression == "" {
-		return "", fmt.Errorf("Error: %s", errorEmptyInput)
+		return "", fmt.Errorf("%w", errorEmptyInput)
 	}
 
 	operandsTmp := strings.Split(cleanExpression, "+")
